@@ -1,0 +1,16 @@
+install.packages("gtools")
+library("gtools")
+
+#künstliche Metabolite erstellen
+met <- paste0("C",c(0,2:6,8,10,12,14,16,18))
+met2 <- paste0("C",c(5.1,8.1,10.1,14.1,16.1,18.1,18.2))
+met3 <- paste0("C",4:6,"DC")
+met3 <- paste0("C",c(5,14,16,18),"OH")
+met4 <- paste0("C",c(14,16,18),"1OH")
+met5 <- paste0("C",18,"2OH")
+met6 <- paste0("C3HMG")
+met7 <- paste0("CHMB")
+m <- c(met,met2,met3,met4,met5,met6,met7)
+
+#permutation ohne wiederholung
+per2 <- nrow(permutations(29,2,v=m,repeats.allowed = F))

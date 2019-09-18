@@ -18,6 +18,6 @@ pero2 <- nrow(permutations(29,2,v=m,repeats.allowed = F))
 #permutation mit wiederholung
 perm2 <- nrow(permutations(29,2,v=m,repeats.allowed = T))
 
-#Matrix mit Analysten erstellt (Mean = 2, SD = 7)
+#Matrix mit Analyten erstellen (Mean = 2, SD = 7)
 y <- matrix(replicate(100,rnorm(n=29,mean=2,sd=7)),ncol=29)
 colnames(y)<-(m)

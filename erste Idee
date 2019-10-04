@@ -13,21 +13,10 @@ met7 <- paste0("CHMB")
 m <- c(met,met2,met3,met4,met5,met6,met7)
 
 #####
-#permutation ohne wiederholung
-p <- permutations(29,2,v=m)
 #permutation mit wiederholung
-p2 <- permutations(29,2,v=m,replace=T)
+d <- permutations(29,2,v=m)
+e <- paste(d[,1],d[,2], sep="+")     #String mit allen Permutationen
+e2 <- paste(d[,1],d[,2], sep="-")
+e3 <- paste(d[,1],d[,2], sep="/")
 
-#####
-#Matrix mit Analyten erstellen (Mean = 2, SD = 7)
-y <- matrix(replicate(100,rnorm(n=29,mean=2,sd=7)),ncol=29)
-colnames(y)<-(m)
 
-######
-#Code Anwenden auf Datensatz
-#Variablennamen aus (m) nehmen
-a <- subset(data.frame,select = m)
-
-#Permutation mit Spalten (m) aus Datensatz
-#für die einzelnen Fälle jeweils (Zeilenweise permutation)
-#alle permutationsmöglichkeiten durchrechnen

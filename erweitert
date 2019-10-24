@@ -1,0 +1,70 @@
+
+## x = cahracter vector
+## bo = binary operators
+genFeat <- function(n, bo=c("+", "-", "/")) {
+  require(arrangements)
+  ## 2-combinations
+  c2 <- combinations(length(n), 2)
+  ## c2 <- c2[-nrow(c2),]
+  c22 <- matrix(colnames(m)[c2],
+                ncol=2)
+  res <- c()
+  for(i in bo) {
+    res <- c(res, apply(c22, 1, paste, collapse=i))
+  }
+  res
+}
+
+## compute new features
+cnf <- function(d, features) {
+  for(i in features) {
+    print(i)
+    with(d, {
+      res <- as.formula(i)
+    })
+  }
+}
+
+
+## Generate matrix with simulated data
+met <- paste0("C",c(0,2:6,8,10,12,14,16,18))
+met2 <- paste0("C",c(5.1,8.1,10.1,14.1,16.1,18.1,18.2))
+met3 <- paste0("C",4:6,"DC")
+met3 <- paste0("C",c(5,14,16,18),"OH")
+met4 <- paste0("C",c(14,16,18),"1OH")
+met5 <- paste0("C",18,"2OH")
+met6 <- paste0("C3HMG")
+met7 <- paste0("CHMB")
+#met8 <- paste(c("Ala","Arg","Asa","Asp","Cit","Glu","Gly","Hci","His","Leu&Ile","Met","Orn","Phe","Pro","Pyg","Thr","Trp","Tyr","Val"))
+cm <- c(met,met2,met3,met4,met5,met6,met7)
+
+simdat <- function(rows=100,
+                   colmeans=c(1:29),
+                   colsd=c(1:29),
+                   names=NULL) {
+  res <- c()
+  for(i in 1:29) {
+    res <- cbind(res, rnorm(rows, mean=colmeans[i], sd=colsd[i]))
+  }
+  if(is.null(names
+  )) 
+    colnames(res) <- cm
+  return(res)
+}
+
+## erstelle Matrix
+m <- as.data.frame(simdat(rows=5))
+
+## Erstelle Features
+feat <- genFeat(colnames(m))
+
+res <- c()
+for(i in feat) {
+  res <-  cbind(res, eval(parse(text=i), envir=m))
+}
+colnames(res) <- feat
+
+## Zusammenführen
+m2 <- cbind(m,res)
+
+head(m2)

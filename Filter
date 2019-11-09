@@ -1,0 +1,60 @@
+#MCADD
+#BCI-Variante, Bootstrapping Konfidenzintervalle für Threshold
+m2$MCADD_f_BCI1 <- with(m2,  C8 > .12 & C8/C10 > 1.246 & C8/C2 > .017)
+#m2$MCADD_f_BCI2 <- with(m2, C8 > .12 & age < 14)  #Alter ist nicht im Datensatz
+m2$MCADD_f_BCI3 <- with(m2, C8 > .12 & C8/C6 > 1.069)
+m2$MCADD_f_BCI4 <- with(m2,(C8 > .12 & (C8/C2 > 0.017) | C8/C6 > 1.069))
+m2$MCADD_f_BCI5 <- with(m2, C8 > .12 & C8/C10 > 1.246 | C8 > 1)
+m2$MCADD_f_BCI6 <- with(m2, C8-C4DC > (-0.03) & C8-C6DC > 0.21 & C8-C10 > 0.06 & C8-C14.1 > 0.1)
+m2$MCADD_f_BCI7 <- with(m2, C8-C10-C5DC > 0.27)
+m2$MCADD_f_BCI8 <- with(m2, C8-C10-C5DC-C181OH > 0.24)
+
+#Quantil Variante, hohe Quantile (=>99%) für Threshold
+m2$MCADD_f_QV1 <- with(m2, C8 > .228 & C8/C10 > 2.589 & C8/C2 > .016)
+#m2$MCADD_f_QV2 <- with(m2, C8 > .228 & age < 14)
+m2$MCADD_f_QV3 <- with(m2, C8 > 0.228 & C8/C6 > 5.685)
+m2$MCADD_f_QV4 <- with(m2, C8 > 0.228 & (C8/C2 > 0.016 | C8/C6 > 5.685))
+m2$MCADD_f_QV5 <- with(m2, C8 > 0.228 & C8/C10 > 2.589 | C8 > 1.0)
+m2$MCADD_f_QV6 <- with(m2, C8-C10 > 0.104 & C8-C18.1 > -0.305)   #C18.1 (Original C18:1)
+m2$MCADD_f_QV7 <- with(m2, C8-C4-C10 > (-0.039) & (C8-C18.1)/C161OH > (-0.04)) #C18.1, C161OH (Original C18:1, C16:1OH)
+m2$MCADD_f_QV8 <- with(m2, (C8-C4-C5.1-C10) > 0,004 & (C8-C18.1)/(C14OH+C16.1OH) > (-2.012))  #C5.1, C18.1, C16.1OH (Original C5:1,)
+
+
+#PKU
+#Quantil Variante
+m2$PKU_f_QV1 <- with(m2, Phe > 105.78)
+m2$PKU_f_QV2 <- with(m2, Phe > 105.78 & Phe/Tyr > 2.14)
+m2$PKU_f_QV3 <- with(m2, Phe-Tyr > 39.9)
+m2$PKU_f_QV4 <- with(m2, Phe-Met-Tyr > 20.051)
+m2$PKU_f_QV5 <- with(m2, Phe-Met/(His+Gly) > 0.126 & Phe-Tyr-Arg > 28.802)
+m2$PKU_f_QV6 <- with(m2, Phe > 123 & Phe-Tyr > 39.9)
+m2$PKU_f_QV7 <- with(m2, Phe > 123 & Phe-Met-Tyr > 20.051)
+m2$PKU_f_QV8 <- with(m2, Phe > 123 & Phe-Met/(His+Gly) > 0.126 & Phe-Tyr-Arg > 28.802)
+
+#BCI
+m2$PKU_f_BCI1 <- with(m2, Phe > 118.9)
+m2$PKU_f_BCI2 <- with(m2, Phe/Tyr > 0.979 & Phe > 118.9)
+m2$PKU_f_BCI3 <- with(m2, Phe-Tyr > 8.72 & Phe-Arg > 109.88 & Phe/Gly > 0.171)
+m2$PKU_f_BCI4 <- with(m2, Phe/(Leu_Ile+Gly) > 0.159 & Phe-Tyr-Met > (-18.53)) #Leu&Ile
+m2$PKU_f_BCI5 <- with(m2, (Phe-Met)/(His+Gly)> 0.118 & (Phe-Cit)/(Ala+Pro) > 0.058)
+m2$PKU_f_BCI6 <- with(m2, Phe > 123 & Phe-Tyr > 8.72 & Phe-Arg > 109.88 & Phe/Gly > 0.171)
+m2$PKU_f_BCI7 <- with(m2, Phe > 123 & Phe/(Leu_Ile+Gly) > 0.159 & Phe-Tyr-Met > (-18.53)) #Leu&Ile
+m2$PKU_f_BCI8 <- with(m2, Phe > 123 & (Phe-Met)/(His+Gly)> 0.118 & (Phe-Cit)/(Ala+Pro) > 0.051)
+
+#GA1
+#Quantil Variante
+m2$GA1_f_QV1 <- with(m2, C5DC > 0.227)
+m2$GA1_f_QV2 <- with(m2, C5DC > 0.227 & C5DC/C16 > 0.111)
+m2$GA1_f_QV3 <- with(m2, C5DC > 0.227 & C5DC/C8 > 4.239)
+m2$GA1_f_QV4 <- with(m2, C5DC > 0.227 & C5DC/C16 > 0.111 & C5DC/C8 > 4.239)
+m2$GA1_f_QV5 <- with(m2, C5DC-C14 > 0.042 & C5DC/C10 > 2.583 & C5DC/C0 > 0.011)
+m2$GA1_f_QV6 <- with(m2, C5DC-C10.1-C18 > (-0.34) & C5DC-C5.1/C8.1 > 3.333) #C10.1, C5.1, C8.1
+
+#angepasste Quantil Variante
+m2$GA1_f_aQV1 <- with(m2, C5DC > 0.227)
+m2$GA1_f_aQV2 <- with(m2, C5DC > 0.227 & C5DC/C16 > 0.108)
+m2$GA1_f_aQV3 <- with(m2, C5DC > 0.227 & C5DC/C8 > 3.179)
+m2$GA1_f_aQV4 <- with(m2, C5DC > 0.27 & C5DC/C16 > 0.131 & C5DC/C8 > 3.391)
+m2$GA1_f_aQV5 <- with(m2, C5DC-C18.1 > (-0.42) & C5DC/C10 > 2.333 & C5DC-C14 > 0.041) #C18.1
+m2$GA1_f_aQV6 <- with(m2, (C5DC+C14OH)/C10 > 3.333 & (C5DC-C18.1)/C10 > (-3.111) & C5DC-C10.1-C18 > (-0.36)) #C18.1, C10.1
+
